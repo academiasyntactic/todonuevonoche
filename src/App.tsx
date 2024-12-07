@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import Card from "./components/Card";
+import NavBar from "./components/NavBar";
+import Carrito from "./components/Carrito";
 
 function App() {
   const [productos, setProductos] = useState();
   const [carrito, setCarrito] = useState([]);
+
+  const [mostrarCarrito, setMostrarCarrito] = useState(false);
 
   // funcion para obtener los productos de la api
   const conseguirProductos = async () => {
@@ -22,7 +26,9 @@ function App() {
 
   return (
     <>
-      <div style={{display:'flex', flexWrap:'wrap', gap:10}}>
+      <NavBar setMostrarCarrito={setMostrarCarrito } />
+      {mostrarCarrito && <Carrito setMostrarCarrito={setMostrarCarrito} /> }
+      {/* <div style={{display:'flex', flexWrap:'wrap', gap:10}}>
         {
           // Primero, verificamos si hay productos y la longitud es mayor a 0
           productos && productos.length > 0 ?
@@ -39,21 +45,9 @@ function App() {
               <h1>No hay productos</h1>
             )
         }
-      </div>
-      <div className="carrito">
-        {
-          carrito.length > 0 ?
-            (
-              carrito.map(
-                elemento => <h1>{elemento.title}</h1>
-              )
-            )
-            :
-            (
-              <h1>No hay productos en el carrito</h1>
-            )
-        }
-      </div>
+      </div> */}
+
+
     </>
   )
 }
